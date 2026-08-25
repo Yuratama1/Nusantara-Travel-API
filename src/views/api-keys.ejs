@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>API Keys | Nusantara Travel API</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">N</div>
+
+        <div>
+          <h2>Nusantara</h2>
+          <span>Travel API</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="/admin/destinations" class="nav-link">
+          Destinations
+        </a>
+
+        <a href="/admin/categories" class="nav-link">
+          Categories
+        </a>
+
+        <a href="/admin/api-keys" class="nav-link active">
+          API Keys
+        </a>
+
+        <a href="/documentation" class="nav-link">
+          API Documentation
+        </a>
+      </nav>
+
+      <button id="logoutButton" class="logout-button">
+        Logout
+      </button>
+    </aside>
+
+    <main class="dashboard-main">
+
+      <header class="dashboard-header">
+        <div>
+          <h1>API Key Management</h1>
+          <p>
+            Kelola API Key untuk mengakses Nusantara Travel API.
+          </p>
+        </div>
+
+        <button
+          class="btn-action"
+          id="openCreateButton"
+        >
+          + Generate API Key
+        </button>
+      </header>
+
+      <section class="content-card">
+
+        <div class="content-header">
+          <div>
+            <h2>Your API Keys</h2>
+            <p>
+              Gunakan API Key melalui header
+              <strong>x-api-key</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>API Key</th>
+                <th>Status</th>
+                <th>Dibuat</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+
+            <tbody id="apiKeyTable">
+              <tr>
+                <td colspan="6">
+                  Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="apiKeyModal">
+    <div class="modal-card category-modal">
+
+      <div class="modal-header">
+        <h2>Generate API Key</h2>
+
+        <button
+          id="closeModalButton"
+          class="modal-close"
+        >
+          ×
+        </button>
+      </div>
+
+      <form id="apiKeyForm">
+
+        <div class="form-group">
+          <label>Nama API Key</label>
+
+          <input
+            type="text"
+            id="apiKeyName"
+            placeholder="Contoh: Production App"
+            required
+          />
+        </div>
+
+        <div id="formAlert" class="alert"></div>
+
+        <button
+          type="submit"
+          class="btn-action full-width"
+        >
+          Generate
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="/js/api-keys.js"></script>
+</body>
+</html>

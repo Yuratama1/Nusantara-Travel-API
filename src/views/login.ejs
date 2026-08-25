@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Login Admin | Nusantara Travel API</title>
+
+  <link
+    rel="stylesheet"
+    href="/css/style.css"
+  />
+</head>
+
+<body class="login-page">
+
+  <div class="login-container">
+
+    <div class="login-card">
+
+      <div class="login-brand">
+        <div class="brand-icon">N</div>
+
+        <div>
+          <h1>Nusantara Travel API</h1>
+          <p>Admin Dashboard</p>
+        </div>
+      </div>
+
+      <div class="login-heading">
+        <h2>Login Admin</h2>
+        <p>
+          Masuk untuk mengelola data
+          Nusantara Travel API.
+        </p>
+      </div>
+
+      <div
+        id="alert"
+        class="alert"
+      ></div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="admin@nusantara.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Masukkan password"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn-primary"
+          id="loginButton"
+        >
+          Login
+        </button>
+
+      </form>
+
+      <div class="login-footer">
+        <p>
+          Nusantara Travel API
+          &copy; 2026
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/js/login.js"></script>
+
+</body>
+</html>

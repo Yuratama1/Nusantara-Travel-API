@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>API Documentation | Nusantara Travel API</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">N</div>
+
+        <div>
+          <h2>Nusantara</h2>
+          <span>Travel API</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="/admin/destinations" class="nav-link">
+          Destinations
+        </a>
+
+        <a href="/admin/categories" class="nav-link">
+          Categories
+        </a>
+
+        <a href="/admin/api-keys" class="nav-link">
+          API Keys
+        </a>
+
+        <a href="/documentation" class="nav-link active">
+          API Documentation
+        </a>
+      </nav>
+
+      <button id="logoutButton" class="logout-button">
+        Logout
+      </button>
+    </aside>
+
+    <main class="dashboard-main">
+
+      <header class="dashboard-header">
+        <div>
+          <h1>API Documentation</h1>
+
+          <p>
+            Dokumentasi penggunaan Nusantara Travel API.
+          </p>
+        </div>
+      </header>
+
+      <section class="doc-section">
+
+        <h2>Overview</h2>
+
+        <p>
+          Nusantara Travel API menyediakan data destinasi wisata
+          Indonesia melalui REST API.
+        </p>
+
+        <p>
+          Setiap request public API membutuhkan API Key melalui
+          header <code>x-api-key</code>.
+        </p>
+
+      </section>
+
+      <section class="doc-section">
+
+        <h2>Base URL</h2>
+
+        <div class="code-box">
+          <code>
+            http://localhost:3000/api/v1
+          </code>
+        </div>
+
+        <p class="doc-note">
+          Setelah deployment, URL ini akan diganti dengan URL Vercel.
+        </p>
+
+      </section>
+
+      <section class="doc-section">
+
+        <h2>Authentication</h2>
+
+        <p>
+          Kirim API Key melalui request header:
+        </p>
+
+        <div class="code-box">
+<pre>x-api-key: ntr_live_xxxxxxxxxxxxxxxxx</pre>
+        </div>
+
+        <h3>Contoh Request</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations
+x-api-key: ntr_live_xxxxxxxxx</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <div class="endpoint-header">
+          <span class="method-get">
+            GET
+          </span>
+
+          <code>/destinations</code>
+        </div>
+
+        <p>
+          Mengambil daftar destinasi wisata.
+        </p>
+
+        <h3>Contoh</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations?page=1&limit=10</pre>
+        </div>
+
+        <h3>Query Parameters</h3>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Tipe</th>
+                <th>Keterangan</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>search</td>
+                <td>string</td>
+                <td>
+                  Pencarian nama, kota, atau provinsi.
+                </td>
+              </tr>
+
+              <tr>
+                <td>province</td>
+                <td>string</td>
+                <td>
+                  Filter berdasarkan provinsi.
+                </td>
+              </tr>
+
+              <tr>
+                <td>category</td>
+                <td>string</td>
+                <td>
+                  Filter berdasarkan kategori.
+                </td>
+              </tr>
+
+              <tr>
+                <td>min_rating</td>
+                <td>number</td>
+                <td>
+                  Rating minimum destinasi.
+                </td>
+              </tr>
+
+              <tr>
+                <td>page</td>
+                <td>number</td>
+                <td>
+                  Halaman pagination.
+                </td>
+              </tr>
+
+              <tr>
+                <td>limit</td>
+                <td>number</td>
+                <td>
+                  Jumlah data per halaman.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Response</h3>
+
+        <div class="code-box">
+<pre>{
+  "success": true,
+  "message": "Destinations retrieved successfully.",
+  "pagination": {
+    "current_page": 1,
+    "limit": 10,
+    "total_data": 55,
+    "total_pages": 6
+  },
+  "data": [
+    {
+      "id": 1,
+      "name": "Pantai Parangtritis",
+      "city": "Bantul",
+      "province": "DI Yogyakarta",
+      "rating": "4.5"
+    }
+  ]
+}</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <div class="endpoint-header">
+          <span class="method-get">
+            GET
+          </span>
+
+          <code>/destinations/:id</code>
+        </div>
+
+        <p>
+          Mengambil detail destination berdasarkan ID.
+        </p>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations/1</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <div class="endpoint-header">
+          <span class="method-get">
+            GET
+          </span>
+
+          <code>/destinations/search?q=</code>
+        </div>
+
+        <p>
+          Melakukan pencarian destinasi berdasarkan keyword.
+        </p>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations/search?q=Bali</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <div class="endpoint-header">
+          <span class="method-get">
+            GET
+          </span>
+
+          <code>/categories</code>
+        </div>
+
+        <p>
+          Mengambil seluruh kategori destination.
+        </p>
+
+        <div class="code-box">
+<pre>GET /api/v1/categories</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <h2>Filter Examples</h2>
+
+        <h3>Filter Provinsi</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations?province=Bali</pre>
+        </div>
+
+        <h3>Filter Kategori</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations?category=Pantai</pre>
+        </div>
+
+        <h3>Filter Rating</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations?min_rating=4.5</pre>
+        </div>
+
+        <h3>Kombinasi Filter</h3>
+
+        <div class="code-box">
+<pre>GET /api/v1/destinations?province=Bali&category=Pantai&min_rating=4.5&page=1&limit=5</pre>
+        </div>
+
+      </section>
+
+      <section class="doc-section">
+
+        <h2>Error Responses</h2>
+
+        <h3>API Key Tidak Dikirim</h3>
+
+        <div class="code-box">
+<pre>{
+  "success": false,
+  "message": "API Key tidak ditemukan."
+}</pre>
+        </div>
+
+        <h3>API Key Tidak Valid</h3>
+
+        <div class="code-box">
+<pre>{
+  "success": false,
+  "message": "API Key tidak valid atau sudah tidak aktif."
+}</pre>
+        </div>
+
+        <h3>Destination Tidak Ditemukan</h3>
+
+        <div class="code-box">
+<pre>{
+  "success": false,
+  "message": "Destination tidak ditemukan."
+}</pre>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/login";
+    }
+
+    document
+      .getElementById("logoutButton")
+      .addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        window.location.href = "/login";
+      });
+  </script>
+
+</body>
+</html>

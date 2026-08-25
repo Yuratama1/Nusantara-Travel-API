@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Dashboard | Nusantara Travel API
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="/css/style.css"
+  />
+</head>
+
+<body>
+
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          N
+        </div>
+
+        <div>
+          <h2>Nusantara</h2>
+          <span>Travel API</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+
+        <a
+          href="/dashboard"
+          class="nav-link active"
+        >
+          Dashboard
+        </a>
+
+        <a
+          href="/admin/destinations"
+          class="nav-link"
+        >
+          Destinations
+        </a>
+
+        <a
+          href="/admin/categories"
+          class="nav-link"
+        >
+          Categories
+        </a>
+
+        <a
+          href="/admin/api-keys"
+          class="nav-link"
+        >
+          API Keys
+        </a>
+
+        <a
+          href="/documentation"
+          class="nav-link"
+        >
+          API Documentation
+        </a>
+
+      </nav>
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+      >
+        Logout
+      </button>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+      <header class="dashboard-header">
+
+        <div>
+          <h1>Dashboard</h1>
+
+          <p>
+            Overview penggunaan
+            Nusantara Travel API.
+          </p>
+        </div>
+
+        <div class="user-info">
+          <span id="userName">
+            Admin
+          </span>
+        </div>
+
+      </header>
+
+      <section class="stats-grid">
+
+        <div class="stat-card">
+          <span class="stat-label">
+            Total Destinations
+          </span>
+
+          <h2 id="totalDestinations">
+            0
+          </h2>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">
+            Total Categories
+          </span>
+
+          <h2 id="totalCategories">
+            0
+          </h2>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">
+            Total API Keys
+          </span>
+
+          <h2 id="totalApiKeys">
+            0
+          </h2>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">
+            Total API Requests
+          </span>
+
+          <h2 id="totalApiRequests">
+            0
+          </h2>
+        </div>
+
+      </section>
+
+      <section class="content-card">
+
+        <div class="content-header">
+          <div>
+            <h2>Recent API Usage</h2>
+
+            <p>
+              Aktivitas request API terbaru.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>API Key</th>
+                <th>Endpoint</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+
+            <tbody id="usageTable">
+
+              <tr>
+                <td colspan="5">
+                  Loading...
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+
+</body>
+</html>

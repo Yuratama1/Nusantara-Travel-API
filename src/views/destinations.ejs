@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Destinations | Nusantara Travel API</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">N</div>
+
+        <div>
+          <h2>Nusantara</h2>
+          <span>Travel API</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="/admin/destinations" class="nav-link active">
+          Destinations
+        </a>
+
+        <a href="/admin/categories" class="nav-link">
+          Categories
+        </a>
+
+        <a href="/admin/api-keys" class="nav-link">
+          API Keys
+        </a>
+
+        <a href="/documentation" class="nav-link">
+          API Documentation
+        </a>
+      </nav>
+
+      <button id="logoutButton" class="logout-button">
+        Logout
+      </button>
+    </aside>
+
+    <main class="dashboard-main">
+
+      <header class="dashboard-header">
+        <div>
+          <h1>Destination Management</h1>
+          <p>Kelola data destinasi wisata.</p>
+        </div>
+
+        <button
+          class="btn-action"
+          id="openCreateButton"
+        >
+          + Tambah Destination
+        </button>
+      </header>
+
+      <section class="content-card">
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Kota</th>
+                <th>Provinsi</th>
+                <th>Rating</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+
+            <tbody id="destinationTable">
+              <tr>
+                <td colspan="8">
+                  Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div
+    class="modal-overlay"
+    id="destinationModal"
+  >
+    <div class="modal-card">
+
+      <div class="modal-header">
+        <h2 id="modalTitle">
+          Tambah Destination
+        </h2>
+
+        <button
+          id="closeModalButton"
+          class="modal-close"
+        >
+          ×
+        </button>
+      </div>
+
+      <form id="destinationForm">
+
+        <input
+          type="hidden"
+          id="destinationId"
+        />
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Nama</label>
+            <input
+              type="text"
+              id="name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Kategori</label>
+
+            <select
+              id="categoryId"
+              required
+            >
+              <option value="">
+                Pilih Kategori
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Kota</label>
+            <input
+              type="text"
+              id="city"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Provinsi</label>
+            <input
+              type="text"
+              id="province"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Latitude</label>
+            <input
+              type="number"
+              step="any"
+              id="latitude"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Longitude</label>
+            <input
+              type="number"
+              step="any"
+              id="longitude"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Rating</label>
+            <input
+              type="number"
+              min="0"
+              max="5"
+              step="0.1"
+              id="rating"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Review Count</label>
+            <input
+              type="number"
+              id="reviewCount"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Harga Tiket</label>
+            <input
+              type="number"
+              id="ticketPrice"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+
+            <select id="status">
+              <option value="active">
+                Active
+              </option>
+
+              <option value="inactive">
+                Inactive
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Jam Buka</label>
+
+            <input
+              type="time"
+              id="openingTime"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Jam Tutup</label>
+
+            <input
+              type="time"
+              id="closingTime"
+            />
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Alamat</label>
+
+          <textarea
+            id="address"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Deskripsi</label>
+
+          <textarea
+            id="description"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <div
+          id="formAlert"
+          class="alert"
+        ></div>
+
+        <button
+          type="submit"
+          class="btn-action full-width"
+        >
+          Simpan
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="/js/destinations.js"></script>
+</body>
+</html>
