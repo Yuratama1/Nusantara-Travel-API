@@ -1,0 +1,72 @@
+@startuml
+left to right direction
+
+title Use Case Diagram - Nusantara Travel API
+
+actor "Admin" as Admin
+actor "Developer / API Client" as Developer
+
+rectangle "Nusantara Travel API" {
+
+    usecase "Register" as UC_Register
+    usecase "Login" as UC_Login
+    usecase "Melihat Dashboard" as UC_Dashboard
+
+    usecase "Mengelola\nDestinations" as UC_Destination
+    usecase "Mengelola\nCategories" as UC_Category
+
+    usecase "Generate API Key" as UC_GenerateKey
+    usecase "Melihat API Key" as UC_ViewKey
+    usecase "Menghapus API Key" as UC_DeleteKey
+
+    usecase "Melihat API\nDocumentation" as UC_Docs
+    usecase "Melihat API Usage" as UC_Usage
+    usecase "Logout" as UC_Logout
+
+    usecase "Mengakses Daftar\nDestinations" as UC_GetDestination
+    usecase "Mencari Destination" as UC_Search
+    usecase "Melihat Detail\nDestination" as UC_Detail
+    usecase "Mengakses Daftar\nCategories" as UC_GetCategory
+
+    usecase "Validasi JWT" as UC_JWT
+    usecase "Validasi API Key" as UC_APIKey
+    usecase "Mencatat API Usage" as UC_Log
+}
+
+Admin --> UC_Register
+Admin --> UC_Login
+Admin --> UC_Dashboard
+Admin --> UC_Destination
+Admin --> UC_Category
+Admin --> UC_GenerateKey
+Admin --> UC_ViewKey
+Admin --> UC_DeleteKey
+Admin --> UC_Docs
+Admin --> UC_Usage
+Admin --> UC_Logout
+
+Developer --> UC_GetDestination
+Developer --> UC_Search
+Developer --> UC_Detail
+Developer --> UC_GetCategory
+Developer --> UC_Docs
+
+UC_Dashboard ..> UC_JWT : <<include>>
+UC_Destination ..> UC_JWT : <<include>>
+UC_Category ..> UC_JWT : <<include>>
+UC_GenerateKey ..> UC_JWT : <<include>>
+UC_ViewKey ..> UC_JWT : <<include>>
+UC_DeleteKey ..> UC_JWT : <<include>>
+UC_Usage ..> UC_JWT : <<include>>
+
+UC_GetDestination ..> UC_APIKey : <<include>>
+UC_Search ..> UC_APIKey : <<include>>
+UC_Detail ..> UC_APIKey : <<include>>
+UC_GetCategory ..> UC_APIKey : <<include>>
+
+UC_GetDestination ..> UC_Log : <<include>>
+UC_Search ..> UC_Log : <<include>>
+UC_Detail ..> UC_Log : <<include>>
+UC_GetCategory ..> UC_Log : <<include>>
+
+@enduml

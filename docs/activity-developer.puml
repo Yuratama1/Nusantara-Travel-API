@@ -1,0 +1,53 @@
+@startuml
+title Activity Diagram - Developer API Client Flow
+
+start
+
+:Developer memiliki API Key;
+
+:Developer membuat request REST API;
+
+:Kirim header x-api-key;
+
+:API Key Middleware membaca API Key;
+
+if (API Key tersedia?) then (Ya)
+
+  :Cari API Key di PostgreSQL;
+
+  if (API Key valid dan aktif?) then (Ya)
+
+    :Request diteruskan ke Controller;
+
+    :Controller melakukan query ke PostgreSQL;
+
+    if (Data ditemukan?) then (Ya)
+
+      :Buat JSON response sukses;
+      :Catat API Usage;
+      :Kirim response ke Developer;
+
+    else (Tidak)
+
+      :Buat response 404;
+      :Catat API Usage;
+      :Kirim error response;
+
+    endif
+
+  else (Tidak)
+
+    :Kirim response 401;
+    :API Key tidak valid / tidak aktif;
+
+  endif
+
+else (Tidak)
+
+  :Kirim response 401;
+  :API Key tidak ditemukan;
+
+endif
+
+stop
+@enduml

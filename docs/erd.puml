@@ -1,0 +1,72 @@
+@startuml
+title ERD - Nusantara Travel API
+
+hide circle
+skinparam linetype ortho
+
+entity "users" as users {
+    * id : INTEGER <<PK>>
+    --
+    name : VARCHAR
+    email : VARCHAR <<UNIQUE>>
+    password : VARCHAR
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "categories" as categories {
+    * id : INTEGER <<PK>>
+    --
+    name : VARCHAR <<UNIQUE>>
+    description : TEXT
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "destinations" as destinations {
+    * id : INTEGER <<PK>>
+    --
+    * category_id : INTEGER <<FK>>
+    name : VARCHAR
+    description : TEXT
+    city : VARCHAR
+    province : VARCHAR
+    address : TEXT
+    latitude : DECIMAL(10,8)
+    longitude : DECIMAL(11,8)
+    rating : DECIMAL(2,1)
+    review_count : INTEGER
+    ticket_price : INTEGER
+    opening_time : TIME
+    closing_time : TIME
+    status : VARCHAR
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "api_keys" as api_keys {
+    * id : INTEGER <<PK>>
+    --
+    * user_id : INTEGER <<FK>>
+    name : VARCHAR
+    key : VARCHAR <<UNIQUE>>
+    is_active : BOOLEAN
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+entity "api_usage" as api_usage {
+    * id : INTEGER <<PK>>
+    --
+    * api_key_id : INTEGER <<FK>>
+    endpoint : VARCHAR
+    method : VARCHAR
+    status_code : INTEGER
+    requested_at : TIMESTAMP
+}
+
+users ||--o{ api_keys : "memiliki"
+api_keys ||--o{ api_usage : "mencatat"
+categories ||--o{ destinations : "memiliki"
+
+@enduml

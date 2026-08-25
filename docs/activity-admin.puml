@@ -1,0 +1,59 @@
+@startuml
+title Activity Diagram - Admin Flow Nusantara Travel API
+
+start
+
+:Admin membuka halaman login;
+
+:Input email dan password;
+
+:Kirim request login;
+
+if (Credential valid?) then (Ya)
+
+  :Server membuat JWT;
+
+  :JWT disimpan di browser;
+
+  :Admin masuk ke Dashboard;
+
+  repeat
+
+    :Admin memilih menu;
+
+    if (Pilih Destinations?) then (Ya)
+      :Melihat data destinations;
+      :Tambah / Edit / Hapus destination;
+      :Simpan perubahan ke PostgreSQL;
+
+    elseif (Pilih Categories?) then (Ya)
+      :Melihat data categories;
+      :Tambah / Edit / Hapus category;
+      :Simpan perubahan ke PostgreSQL;
+
+    elseif (Pilih API Keys?) then (Ya)
+      :Melihat API Key;
+      :Generate / Hapus API Key;
+      :Simpan perubahan ke PostgreSQL;
+
+    elseif (Pilih API Usage?) then (Ya)
+      :Melihat riwayat penggunaan API;
+
+    elseif (Pilih Documentation?) then (Ya)
+      :Melihat dokumentasi REST API;
+
+    endif
+
+  repeat while (Masih menggunakan dashboard?) is (Ya)
+
+  :Logout;
+  :Hapus JWT dari browser;
+
+else (Tidak)
+
+  :Tampilkan pesan login gagal;
+
+endif
+
+stop
+@enduml
